@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .product-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .product-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product-title {
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+        .product-description {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .product-price {
+            font-size: 20px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .quantity-selector button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .quantity-selector button:hover {
+            background-color: #0056b3;
+        }
+        .quantity-selector input {
+            width: 50px;
+            text-align: center;
+            font-size: 16px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .total-price {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .add-to-cart {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+        .cart-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<div class="product-container">
+    <img src="https://via.placeholder.com/400" alt="Product Image" class="product-image">
+    <h1 class="product-title">Awesome Product</h1>
+    <p class="product-description">This is an amazing product that you will absolutely love! It has all the features you need and more.</p>
+    <div class="product-price">$99.99</div>
+
+    <div class="quantity-selector">
+        <button onclick="decreaseQuantity()">-</button>
+        <input type="text" id="quantity" value="1" readonly>
+        <button onclick="increaseQuantity()">+</button>
+    </div>
+
+    <div class="total-price">Total: $<span id="total">99.99</span></div>
+
+    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    <div class="cart-message" id="cart-message">Product added to cart!</div>
+</div>
+
+<script>
+    let price = 99.99;
+    let quantity = 1;
+
+    function updateTotal() {
+        const total = (price * quantity).toFixed(2);
+        document.getElementById('total').innerText = total;
+    }
+
+    function decreaseQuantity() {
+        if (quantity > 1) {
+            quantity--;
+            document.getElementById('quantity').value = quantity;
+            updateTotal();
+        }
+    }
+
+    function increaseQuantity() {
+        quantity++;
+        document.getElementById('quantity').value = quantity;
+        updateTotal();
+    }
+
+    function addToCart() {
+        document.getElementById('cart-message').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('cart-message').style.display = 'none';
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
